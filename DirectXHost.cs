@@ -257,11 +257,11 @@ If you have issues with the window positions/sizes, delete the 'props.bin' file 
 					Settings.Save();
 					(menuItem as MenuItem).Text = $"{(Settings.savePositions ? '☑' : '☐')} Save Window Positions";
 				}),
-
-				new MenuItem($"{(Settings.topMost ? '☑' : '☐')} Always On Top", (s,e) => {
+				new MenuItem($"{(Settings.topMost ? '☑' : '☐')} Always On Top", (menuItem,e) => {
 					Settings.topMost = !Settings.topMost;
 					_dxForm.Menu = GetMenu();
 					Settings.Save();
+				}),
 				new MenuItem("Transparency Colour", (menuItem,e) =>
 				{
 					var dialog = new ColorDialog();
