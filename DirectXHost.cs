@@ -114,12 +114,8 @@ namespace DirectXHost
 				gfxScreenshot.Dispose();
 				_overlayTarget.Invalidate();
 			}
-			// Calculate Frame Limiting
-			long end = DateTime.Now.Ticks;
-			long duration = end - time;
-			int timeout = (1000 / 10) - (int)new TimeSpan(duration).TotalMilliseconds;
-			if (timeout > 0)
-				Thread.Sleep(timeout);
+			// Calculate Frame Limiting (Basic)
+			Thread.Sleep(1000/Settings.frameRate);
 		}
 
 		class OverlayForm : Form
