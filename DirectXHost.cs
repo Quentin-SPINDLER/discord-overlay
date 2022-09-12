@@ -178,7 +178,7 @@ namespace DirectXHost
 			if (Settings.savePositions) _overlayForm.Location = Settings.overlayRect.Point;
 			_overlayForm.BackColor = Settings.transparencyKey;
 			_overlayForm.TransparencyKey = Settings.transparencyKey;
-			_overlayForm.TopMost = true;
+			_overlayForm.TopMost = Settings.topMost;
 			_overlayForm.ShowIcon = false;
 			_overlayForm.MinimizeBox = true;
 			_overlayForm.MaximizeBox = true;
@@ -257,6 +257,11 @@ If you have issues with the window positions/sizes, delete the 'props.bin' file 
 					Settings.Save();
 					(menuItem as MenuItem).Text = $"{(Settings.savePositions ? '☑' : '☐')} Save Window Positions";
 				}),
+
+				new MenuItem($"{(Settings.topMost ? '☑' : '☐')} Always On Top", (s,e) => {
+					Settings.topMost = !Settings.topMost;
+					_dxForm.Menu = GetMenu();
+					Settings.Save();
 				new MenuItem("Transparency Colour", (menuItem,e) =>
 				{
 					var dialog = new ColorDialog();
